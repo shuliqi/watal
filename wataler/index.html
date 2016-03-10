@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head lang="en">
+	<meta charset = "UTF-8">
+	<style type="text/css">
+	   #zong{
+	   	margin: 0px auto;
+	   	position: relative;
+	   }
+    .hezi{
+    	width: 230px;
+    	padding:15px;
+    	float: left;
+
+    }
+    img{
+    	padding: 10px;
+    	border: 1px solid #ccc;
+/*    	opacity: 1;*/
+    }
+    #shuliqi img{
+      filter:alpha(opacity:0); 
+	    opacity:0; 
+    }
+	</style>
+	<script type="text/javascript" src="move.js"></script>
+	<script type="text/javascript" >
+  window.onload= function  () {
+    walterfall();
+    var dataInt={'data':[{'src':'1.jpg'},{'src':'2.jpg'},{'src':'3.jpg'},{'src':'4.jpg'}]};
+    // cHeckOnscoll();
+    // console.log(cHeckOnscoll())
+    window.onscroll = function  () {
+    	if ( cHeckOnscoll ()) {
+    		var oParent = document.getElementById('zong');
+    	  for (var i = 0; i < dataInt.data.length; i++) {
+    			var oHezi = document.createElement('div');
+    		  oHezi.className ='hezi';
+    		  oParent.appendChild(oHezi);
+
+    		  var oPic = document.createElement('div');
+    		  oPic.id ='shuliqi';
+    		  oHezi.appendChild(oPic);
+
+    		  var oImg = document.createElement('img');
+    		  oImg.src='images/'+ dataInt.data[i].src;
+    		  oPic.appendChild(oImg);
+    		  startMove(oImg, {opacity:100})
+    	  }
+       walterfall();
+    	}
+    }
+
+ 
+ }
+ function walterfall () {
+ 	var oZong = document.getElementById('zong');
+  var aBoxs = getByClass( oZong,'hezi');
+ 	var oLineW = aBoxs[0].offsetWidth;
+    // console.log(oLineW);
+    var oNum = Math.floor((document.documentElement.clientWidth)/oLineW);
+    var aArrH = [];
+     // console.log(oNum);
+    oZong.style.width = oLineW*oNum + 'px';
+    for (var i = 0; i < aBoxs.length; i++) {
+    	if (i<oNum) {
+          aArrH[i] = aBoxs[i].offsetHeight;
+          // console.log(aArrH[i]);
+    	}else{
+    		  var oMinH =Math.min.apply(null,aArrH);//Math.min:查找一组数据的最小值
+    		  // console.log( oMinH)
+    		  var oMinHIndex= getoMinHIndex(aArrH,oMinH);
+    		  // console.log( oMinHIndex);
+    		  aBoxs[i].style.position = 'absolute';
+    		  aBoxs[i].style.top = oMinH +'px';
+    		  aBoxs[i].style.left = aBoxs[oMinHIndex].offsetLeft + 'px';
+          // console.log(aBoxs[oMinHIndex].offsetLeft);
+          aArrH[oMinHIndex] += aBoxs[i].offsetHeight;
+    	}
+
+    }
+ }
+function getByClass (oParent,sClass) {
+	var oEle = oParent.getElementsByTagName('*');
+	var aArr = [];
+	for (var i = 0; i < oEle.length; i++) {
+		if (oEle[i].className == sClass) {
+       aArr.push(oEle[i]);
+		}
+	};
+	return aArr;
+}
+function getoMinHIndex(arr,minH){
+    for (var i = 0; i < arr.length; i++) {
+    	if (arr[i] == minH) {
+    		return i;
+    	};
+    }
+}
+function cHeckOnscoll () {
+	var oParent = document.getElementById('zong');
+	var oBoxs = getByClass(oParent,'hezi');
+	// console.log(oBoxs.length);
+	var oLastT = oBoxs[oBoxs.length - 1].offsetTop;
+	// console.log(oLastT);
+	var oOnscollClient = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight;
+	// console.log(oOnscollClient)
+	return (oLastT<oOnscollClient)?true:false;
+}
+	</script>
+</head>
+<body>
+    <div id="zong">
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/0.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/1.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/2.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/3.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/4.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/5.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/6.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/7.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/8.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/9.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/10.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/11.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/12.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/13.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/14.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/15.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/16.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/17.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/18.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/19.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/20.jpg">
+    		</div>
+    	</div>
+    	<div class="hezi">
+    		<div id="pic">
+    			<img src="images/21.jpg">
+    		</div>
+    	</div>
+
+    </div>
+</body>
+</html>
